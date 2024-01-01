@@ -1,18 +1,41 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div style="width: 50%; margin: auto;">
+    <vue-tel-input v-model="phone" v-bind="bindProps"></vue-tel-input>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import { ref } from 'vue';
+import { VueTelInput } from 'vue-tel-input'
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    VueTelInput,
+  },
+  setup() {
+    const phone = ref(null);
+
+    return {
+      phone: phone,
+      bindProps: {
+        mode: "international",
+        defaultCountry: "LK",
+        autoFormat: true,
+        dropdownOptions: {
+          showDialCodeInSelection: true,
+          showSearchBox: true,
+          showFlags: true
+        }
+      }
+    }
   }
 }
+
 </script>
+
+<style>
+@import "https://unpkg.com/vue-tel-input@8.3.1/dist/vue-tel-input.css";
+</style>
 
 <style>
 #app {
