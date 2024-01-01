@@ -51,8 +51,8 @@ export default {
     inputEvent(event) {
       if (this.bindProps.autoFormat) return;
       // console.log("defalut -> ", event.target.selectionStart);
-      // console.log("key Code ", event.keyCode);
-      if (event.keyCode == 37 || event.keyCode == 39) {
+      console.log("key Code ", event.keyCode);
+      if (event.keyCode >= 37 && event.keyCode <= 40) {
         this.before = event.target.selectionStart;
         this.positionChanged = true;
       } else if (event.keyCode > 48 && event.keyCode < 58) {
