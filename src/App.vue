@@ -65,8 +65,8 @@ export default {
 
     textClickEvent(event) {
       if (this.bindProps.autoFormat) return;
-      console.log("textClickEvent");
-      console.log(event.target.selectionStart);
+      // console.log("textClickEvent");
+      // console.log(event.target.selectionStart);
       this.before = event.target.selectionStart;
       this.positionChanged = true;
     }
