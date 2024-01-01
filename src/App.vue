@@ -3,14 +3,14 @@
     <vue-tel-input v-model="phone" v-bind="bindProps" v-on:keyup="inputEvent($event)"
       @click="textClickEvent($event)"></vue-tel-input>
   </div>
-  <div>
+  <!-- <div>
     <br>
     Tel: {{ phone }}<br>
     <br>
     before: {{ before }}<br>
     <br>
     positionChanged: {{ positionChanged }}<br>
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -23,7 +23,6 @@ export default {
   },
   setup() {
     const phone = ref(null);
-
 
     return {
       phone: phone,
@@ -48,18 +47,16 @@ export default {
   },
 
   methods: {
-    inputEvent(event) {
 
+    inputEvent(event) {
+      if (this.bindProps.autoFormat) return;
       // console.log("defalut -> ", event.target.selectionStart);
       // console.log("key Code ", event.keyCode);
       if (event.keyCode == 37 || event.keyCode == 39) {
         this.before = event.target.selectionStart;
         this.positionChanged = true;
-        // console.log("set before -> ", this.before);
       } else if (event.keyCode > 48 && event.keyCode < 58) {
         if (this.positionChanged) {
-          // console.log("before +1 ", Number(this.before) + 1);
-          // console.log("selectionStart ", event.target.selectionStart)
           event.target.setSelectionRange(Number(this.before) + 1, Number(this.before) + 1);
           this.before = Number(this.before) + 1;
         }
@@ -67,6 +64,7 @@ export default {
     },
 
     textClickEvent(event) {
+      if (this.bindProps.autoFormat) return;
       console.log("textClickEvent");
       console.log(event.target.selectionStart);
       this.before = event.target.selectionStart;
