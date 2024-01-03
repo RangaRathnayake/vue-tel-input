@@ -51,7 +51,7 @@ export default {
     inputEvent(event) {
       if (this.bindProps.autoFormat) return;
       // console.log("defalut -> ", event.target.selectionStart);
-      // console.log("key Code ", event.keyCode);
+      console.log("key Code ", event.keyCode);
       if (event.keyCode >= 37 && event.keyCode <= 40) {
         this.before = event.target.selectionStart;
         this.positionChanged = true;
@@ -59,6 +59,11 @@ export default {
         if (this.positionChanged) {
           event.target.setSelectionRange(Number(this.before) + 1, Number(this.before) + 1);
           this.before = Number(this.before) + 1;
+        }
+      } else if (event.keyCode == 8) {
+        if (this.positionChanged) {
+          event.target.setSelectionRange(Number(this.before) - 1, Number(this.before) - 1);
+          this.before = Number(this.before) - 1;
         }
       }
     },
